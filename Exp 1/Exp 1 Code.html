@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Integration Demo</title>
+
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        console.log("[Internal Script] Page loading started...");
+
+        function showWelcome() {
+            const heading = document.getElementById("welcome-text");
+            heading.textContent = "Welcome to the Web Environment Demo!";
+            heading.style.color = "#2ecc71";
+            console.log("[Internal Script] Welcome message triggered by user.");
+        }
+    </script>
+
+    <!-- SIMULATED EXTERNAL JAVASCRIPT (Moved inside script tags for online runner) -->
+    <script>
+        console.log("[Simulated External Script] Initialized successfully.");
+
+        const environmentInfo = {
+            browserLanguage: navigator.language,
+            platform: navigator.platform,
+            screenWidth: window.screen.width + "px",
+            screenHeight: window.screen.height + "px",
+            cookiesEnabled: navigator.cookieEnabled,
+            currentTime: new Date().toLocaleTimeString()
+        };
+
+        console.log("--- User Environment Details ---");
+        console.table(environmentInfo);
+
+        function initiateTraceDemo() {
+            function deeplyNestedFunction() {
+                console.log("--- Execution Stack Trace ---");
+                console.trace("Tracking how this nested function was reached:");
+            }
+            deeplyNestedFunction();
+        }
+        initiateTraceDemo();
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f7;">
+
+    <h1 id="welcome-text">Click the button below to start</h1>
+
+    <!-- INLINE JAVASCRIPT -->
+    <button onclick="console.log('[Inline Script] Button clicked.'); showWelcome();" 
+            style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+        Activate Page
+    </button>
+
+    <p style="margin-top: 20px; color: #7f8c8d;">
+        Open your browser's Developer Tools (F12 -> Console) to see the environment logs.
+    </p>
+
+</body>
+</html>
