@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 2: Billing Calculator</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f7; max-width: 400px;">
+
+    <h2>📄 Retail Billing Calculator</h2>
+    
+    <label>Product Price ($):</label><br>
+    <input type="number" id="price-input" value="100" style="width: 100%; padding: 8px; margin: 8px 0;"><br>
+
+    <label>Quantity:</label><br>
+    <input type="number" id="qty-input" value="2" style="width: 100%; padding: 8px; margin: 8px 0;"><br>
+
+    <button onclick="calculateBill()" style="padding: 10px 20px; background: #3498db; color: white; border: none; cursor: pointer; width: 100%;">
+        Calculate Total
+    </button>
+
+    <div id="receipt-box" style="margin-top: 20px; padding: 15px; background: white; border: 1px solid #ddd; border-radius: 5px; display: none;">
+        <!-- Receipt output will go here -->
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
