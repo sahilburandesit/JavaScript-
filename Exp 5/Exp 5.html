@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart Total Calculator</title>
+</head>
+<body>
+
+<h2>Shopping Cart Total Calculator</h2>
+
+<button onclick="calculateTotal()">Calculate Total</button>
+
+<h3 id="output"></h3>
+
+<script>
+function calculateTotal() {
+
+    // Array of Objects (Shopping Cart)
+    const cart = [
+        { name: "Laptop", price: 50000, quantity: 1 },
+        { name: "Mouse", price: 500, quantity: 2 },
+        { name: "Keyboard", price: 1500, quantity: 1 }
+    ];
+
+    let output = "<b>Items in Cart:</b><br>";
+
+    // forEach() array method
+    cart.forEach(item => {
+        output += `${item.name} - ₹${item.price} x ${item.quantity}<br>`;
+    });
+
+    // reduce() array method
+    let total = cart.reduce((sum, item) => {
+        return sum + (item.price * item.quantity);
+    }, 0);
+
+    let discount = 0;
+
+    // Discount Logic
+    if (total >= 50000) {
+        discount = total * 0.20;   // 20% discount
+    } else if (total >= 20000) {
+        discount = total * 0.10;   // 10% discount
+    } else if (total >= 5000) {
+        discount = total * 0.05;   // 5% discount
+    }
+
+    let finalAmount = total - discount;
+
+    output += "<br><b>Total Amount:</b> ₹" + total;
+    output += "<br><b>Discount:</b> ₹" + discount;
+    output += "<br><b>Final Amount:</b> ₹" + finalAmount;
+
+    document.getElementById("output").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
