@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gym Admission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        input {
+            padding: 8px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+        span {
+            color: red;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Gym Admission Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    <label>Name:</label><br>
+    <input type="text" id="name" oninput="checkName()">
+    <br>
+    <span id="nameError"></span><br>
+
+    <label>Age:</label><br>
+    <input type="number" id="age" oninput="checkAge()">
+    <br>
+    <span id="ageError"></span><br>
+
+    <label>Email:</label><br>
+    <input type="text" id="email" oninput="checkEmail()">
+    <br>
+    <span id="emailError"></span><br>
+
+    <label>Phone:</label><br>
+    <input type="text" id="phone" oninput="checkPhone()">
+    <br>
+    <span id="phoneError"></span><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<h3 id="result"></h3>
+
+<script>
+
+// Name Validation
+function checkName() {
+    let name = document.getElementById("name").value;
+    if (name.length < 3) {
+        document.getElementById("nameError").innerHTML = "Minimum 3 characters required.";
+    } else {
+        document.getElementById("nameError").innerHTML = "";
+    }
+}
+
+// Age Validation
+function checkAge() {
+    let age = document.getElementById("age").value;
+    if (age < 18 || age > 60) {
+        document.getElementById("ageError").innerHTML = "Age must be between 18 and 60.";
+    } else {
+        document.getElementById("ageError").innerHTML = "";
+    }
+}
+
+// Email Validation
+function checkEmail() {
+    let email = document.getElementById("email").value;
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (!pattern.test(email)) {
+        document.getElementById("emailError").innerHTML = "Invalid email.";
+    } else {
+        document.getElementById("emailError").innerHTML = "";
+    }
+}
+
+// Phone Validation
+function checkPhone() {
+    let phone = document.getElementById("phone").value;
+    let pattern = /^[0-9]{10}$/;
+
+    if (!pattern.test(phone)) {
+        document.getElementById("phoneError").innerHTML = "Enter a valid 10-digit number.";
+    } else {
+        document.getElementById("phoneError").innerHTML = "";
+    }
+}
+
+// Final Form Validation
+function validateForm() {
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+
+    if (name.length < 3 || age < 18 || age > 60 ||
+        !(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email)) ||
+        !(/^[0-9]{10}$/.test(phone))) {
+
+        alert("Please correct the errors before submitting.");
+        return false;
+    }
+
+    document.getElementById("result").innerHTML =
+        "<b>Admission Form Submitted Successfully!</b>";
+
+    return false; // Prevent page refresh
+}
+
+</script>
+
+</body>
+</html>
