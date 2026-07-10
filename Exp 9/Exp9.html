@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Preference using localStorage & sessionStorage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .light {
+            background-color: white;
+            color: black;
+        }
+
+        .dark {
+            background-color: #222;
+            color: white;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+        }
+
+        input {
+            padding: 8px;
+            width: 220px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>User Preferences</h2>
+
+<label>Enter Your Name:</label><br><br>
+<input type="text" id="username" placeholder="Enter Name">
+<button onclick="saveName()">Save Name</button>
+
+<h3 id="welcome"></h3>
+
+<hr>
+
+<h3>Choose Theme</h3>
+
+<button onclick="setTheme('light')">Light Theme</button>
+<button onclick="setTheme('dark')">Dark Theme</button>
+
+<script>
+
+// Load saved theme and username when page opens
+window.onload = function () {
+
+    let theme = localStorage.getItem("theme");
+
+    if (theme) {
+        document.body.className = theme;
+    } else {
+        document.body.className = "light";
+    }
+
+    let name = sessionStorage.getItem("username");
+
+    if (name) {
+        document.getElementById("welcome").innerHTML =
+            "Welcome, " + name + "!";
+    }
+};
+
+// Save username using sessionStorage
+function saveName() {
+
+    let name = document.getElementById("username").value;
+
+    sessionStorage.setItem("username", name);
+
+    document.getElementById("welcome").innerHTML =
+        "Welcome, " + name + "!";
+}
+
+// Save theme using localStorage
+function setTheme(theme) {
+
+    document.body.className = theme;
+
+    localStorage.setItem("theme", theme);
+}
+
+</script>
+
+</body>
+</html>
