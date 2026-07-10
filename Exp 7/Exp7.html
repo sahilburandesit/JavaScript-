@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        input {
+            padding: 8px;
+            width: 250px;
+        }
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter a task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+<script>
+
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value.trim();
+
+    if (task === "") {
+        alert("Please enter a task.");
+        return;
+    }
+
+    // Create list item
+    let li = document.createElement("li");
+
+    // Create task text
+    let span = document.createElement("span");
+    span.textContent = task;
+
+    // Edit Button
+    let editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+
+    editBtn.onclick = function () {
+        let newTask = prompt("Edit Task:", span.textContent);
+
+        if (newTask !== null && newTask.trim() !== "") {
+            span.textContent = newTask;
+        }
+    };
+
+    // Delete Button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+
+    deleteBtn.onclick = function () {
+        li.remove();
+    };
+
+    li.appendChild(span);
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
+
+    // DOM Update
+    document.getElementById("taskList").appendChild(li);
+
+    // Clear input
+    input.value = "";
+}
+
+</script>
+
+</body>
+</html>
