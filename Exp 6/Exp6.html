@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Functions and Regex</title>
+</head>
+<body>
+
+<h2>Email Validation, Data Extraction & Text Analysis</h2>
+
+<label>Email:</label>
+<input type="text" id="email" placeholder="Enter Email">
+<br><br>
+
+<label>Text:</label><br>
+<textarea id="text" rows="5" cols="40" placeholder="Enter text with numbers"></textarea>
+<br><br>
+
+<button onclick="analyzeText()">Analyze</button>
+
+<h3 id="output"></h3>
+
+<script>
+function analyzeText() {
+
+    let email = document.getElementById("email").value.trim().toLowerCase();
+    let text = document.getElementById("text").value.trim();
+
+    // Regular Expression for Email Validation
+    let emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    let result = "";
+
+    if (emailPattern.test(email)) {
+        result += "<b>Email:</b> Valid Email<br><br>";
+    } else {
+        result += "<b>Email:</b> Invalid Email<br><br>";
+    }
+
+    // Extract Numbers from Text
+    let numbers = text.match(/\d+/g);
+
+    if (numbers) {
+        result += "<b>Extracted Numbers:</b> " + numbers.join(", ") + "<br><br>";
+    } else {
+        result += "<b>Extracted Numbers:</b> None<br><br>";
+    }
+
+    // Text Analysis
+    let words = text === "" ? 0 : text.split(/\s+/).length;
+    let characters = text.length;
+
+    result += "<b>Word Count:</b> " + words + "<br>";
+    result += "<b>Character Count:</b> " + characters;
+
+    document.getElementById("output").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
