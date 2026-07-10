@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grading System</title>
+</head>
+<body>
+
+    <h2>Student Grading System</h2>
+
+    <form onsubmit="return calculateGrade()">
+        <label>Enter Marks (0-100): </label>
+        <input type="number" id="marks" min="0" max="100" required>
+        <br><br>
+
+        <input type="submit" value="Get Grade">
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateGrade() {
+            let marks = document.getElementById("marks").value;
+
+            // Form Validation
+            if (marks === "") {
+                alert("Please enter marks.");
+                return false;
+            }
+
+            marks = Number(marks);
+
+            if (marks < 0 || marks > 100) {
+                document.getElementById("result").innerHTML =
+                    "Invalid input! Please enter marks between 0 and 100.";
+                return false;
+            }
+
+            let grade;
+
+            // Control Structure (if-else)
+            if (marks >= 90) {
+                grade = "A+";
+            } else if (marks >= 80) {
+                grade = "A";
+            } else if (marks >= 70) {
+                grade = "B";
+            } else if (marks >= 60) {
+                grade = "C";
+            } else if (marks >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            document.getElementById("result").innerHTML =
+                "Marks: " + marks + "<br>Grade: " + grade;
+
+            return false; // Prevent form submission
+        }
+    </script>
+
+</body>
+</html>
