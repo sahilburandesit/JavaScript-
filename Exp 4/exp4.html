@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Palindrome Checker</title>
+</head>
+<body>
+
+<h2>Palindrome Checker</h2>
+
+<input type="text" id="text" placeholder="Enter a word">
+<button onclick="checkPalindrome()">Check</button>
+
+<h3 id="result"></h3>
+
+<script>
+    // Closure Function
+    function createCounter() {
+        let count = 0; // Local scope
+
+        return function () {
+            count++;
+            return count;
+        };
+    }
+
+    const counter = createCounter();
+
+    // Anonymous Function
+    const reverseString = function(str) {
+        return str.split("").reverse().join("");
+    };
+
+    // Arrow Function
+    const isPalindrome = (str) => {
+        return str === reverseString(str);
+    };
+
+    // Regular Function
+    function checkPalindrome() {
+        try {
+            let input = document.getElementById("text").value.trim().toLowerCase();
+
+            if (input === "") {
+                throw "Input cannot be empty!";
+            }
+
+            let result;
+
+            if (isPalindrome(input)) {
+                result = "✅ '" + input + "' is a Palindrome.";
+            } else {
+                result = "❌ '" + input + "' is NOT a Palindrome.";
+            }
+
+            document.getElementById("result").innerHTML =
+                result + "<br>Checked: " + counter() + " time(s)";
+
+        } catch (error) {
+            document.getElementById("result").innerHTML =
+                "<span style='color:red'>" + error + "</span>";
+        }
+    }
+</script>
+
+</body>
+</html>
